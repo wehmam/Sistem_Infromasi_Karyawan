@@ -73,6 +73,7 @@
     $('#example').DataTable();
 } );
   </script>
+  @include('sweetalert::alert')
 </body>
 
 </html>

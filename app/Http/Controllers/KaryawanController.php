@@ -2,8 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use App\Karyawan;
+use App\model\Karyawan;
+use App\model\Telepon;
+use App\model\Jabatan;
 use Illuminate\Http\Request;
+use App\Http\Requests\KaryawanRequest;
+Use Alert;
+use DataTables;
 
 class KaryawanController extends Controller
 {
@@ -24,9 +29,9 @@ class KaryawanController extends Controller
      */
     public function create()
     {
-        $karyawan = ['Fullstack Developer','Frontend Developer','Backend Developer','Mobile Developer','UI/UX Designer'];
+        $jabatan = Jabatan::all();
         $status = ['Karyawan Tetap','Magang','Kontrak'];
-        return view('pages.admin.karyawan.formCreate',compact('karyawan','status'));
+        return view('pages.admin.karyawan.formCreate',compact('status','jabatan'));
     }
 
     /**
@@ -37,7 +42,21 @@ class KaryawanController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validateData = $request->validate([
+            'nama' => 'required|string|min:3',
+            'jenis_kelamin' => 'required',
+            'jabatan_id' => 'required',
+            'status' => 'required',
+            'tanggal_masuk' => 'required',
+        ]);
+        
+        $karyawan = Karyawan::create($validateData);
+        $telepon = new Telepon;
+        $telepon->nomer_telepon = $request->input('nomer_telepon');
+        $karyawan->telepon()->save($telepon);
+
+        Alert::success('Berhasil','Data '.$request->nama.' Berhasil Disimpan');
+        return redirect()->route('karyawan.index');
     }
 
     /**
@@ -48,7 +67,7 @@ class KaryawanController extends Controller
      */
     public function show(Karyawan $karyawan)
     {
-        //
+        // 
     }
 
     /**
@@ -59,7 +78,10 @@ class KaryawanController extends Controller
      */
     public function edit(Karyawan $karyawan)
     {
-        //
+        $karyawan->find($karyawan->id);
+        $jabatan = Jabatan::all();
+        $status = ['Karyawan Tetap','Magang','Kontrak'];
+        return view('pages.admin.karyawan.formEdit',compact('karyawan','jabatan','status'));
     }
 
     /**
@@ -71,7 +93,21 @@ class KaryawanController extends Controller
      */
     public function update(Request $request, Karyawan $karyawan)
     {
-        //
+        $validateData = $request->validate([
+            'nama' => 'required|string|min:3',
+            'jenis_kelamin' => 'required',
+            'jabatan_id' => 'required',
+            'status' => 'required',
+            'tanggal_masuk' => 'required',
+        ]);
+
+        $karyawan->update($validateData);
+        $telepon = $karyawan->Telepon;
+        $telepon->nomer_telepon = $request->input('nomer_telepon');
+        $karyawan->telepon()->save($telepon);
+        
+        Alert::success('Berhasil', 'Data Berhasil Di ubah !');
+        return redirect()->route('karyawan.index');
     }
 
     /**
@@ -82,6 +118,8 @@ class KaryawanController extends Controller
      */
     public function destroy(Karyawan $karyawan)
     {
-        //
+        $karyawan->find($karyawan->id)->delete();
+        Alert::toast('Data '.$karyawan->nama.' Berhasil Terhapus','error');
+        return redirect()->route('karyawan.index');
     }
 }
