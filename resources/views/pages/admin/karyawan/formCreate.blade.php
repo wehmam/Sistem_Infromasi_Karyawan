@@ -1,5 +1,7 @@
 @extends('layouts.master')
 @section('title','create')
+@section('karyawan','active')
+
 @section('content')
     <!-- Content Header (Page header) -->
     <section class="content mt-3">

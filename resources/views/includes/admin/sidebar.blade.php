@@ -21,29 +21,29 @@
         <nav class="mt-2">
             <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">      
               <li class="nav-item">
-                  <a href="pages/gallery.html" class="nav-link">
-                    <i class="nav-icon far fa-image"></i>
+                  <a href="{{ route('karyawan.index') }}" class="nav-link @yield('karyawan')">
+                    <i class="nav-icon far fa-user"></i>
                     <p>
-                      Gallery
+                      Data Karyawan
                     </p>
                   </a>
                 </li>
                 
                 
                 <li class="nav-item">
-                  <a href="pages/gallery.html" class="nav-link">
-                    <i class="nav-icon far fa-image"></i>
+                  <a href="{{ route('jabatan.index') }}" class="nav-link @yield('jabatan')">
+                    <i class="nav-icon fas fa-glasses"></i>
                     <p>
-                      Karyawan
+                      Jabatan
                     </p>
                   </a>
                 </li>
 
                 <li class="nav-item">
-                  <a href="pages/gallery.html" class="nav-link">
-                    <i class="nav-icon far fa-image"></i>
+                  <a href="pages/gallery.html" class="nav-link @yield('pendidikan')">
+                    <i class="nav-icon fas fa-award"></i>
                     <p>
-                      data 2
+                      Pendidikan
                     </p>
                   </a>
                 </li>

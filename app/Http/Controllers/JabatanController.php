@@ -2,7 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Jabatan;
+use App\model\Jabatan;
+use Alert;
 use Illuminate\Http\Request;
 
 class JabatanController extends Controller
@@ -14,7 +15,7 @@ class JabatanController extends Controller
      */
     public function index()
     {
-        //
+        return view('pages.admin.jabatan.index',['jabatan'=> Jabatan::all()]);
     }
 
     /**
@@ -24,7 +25,7 @@ class JabatanController extends Controller
      */
     public function create()
     {
-        //
+        return view('pages.admin.jabatan.create');
     }
 
     /**
@@ -35,7 +36,12 @@ class JabatanController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validateData = $request->validate([
+            'jabatan' => 'required|string'
+        ]);
+        Jabatan::create($validateData);
+        Alert::toast('Data '.$request->jabatan.' Berhasil Disimpan','success');
+        return redirect()->route('jabatan.index');
     }
 
     /**
@@ -57,7 +63,7 @@ class JabatanController extends Controller
      */
     public function edit(Jabatan $jabatan)
     {
-        //
+        return view('pages.admin.jabatan.edit',['jabatan'=>$jabatan->find($jabatan->id)]);
     }
 
     /**
@@ -69,7 +75,12 @@ class JabatanController extends Controller
      */
     public function update(Request $request, Jabatan $jabatan)
     {
-        //
+        $validateData = $request->validate([
+            'jabatan' => 'required|string'
+        ]);
+        $jabatan->find($jabatan->id)->update($validateData);
+        Alert::toast('Data '.$jabatan->jabatan.' Berhasil Diedit','success');
+        return redirect()->route('jabatan.index');
     }
 
     /**
@@ -80,6 +91,8 @@ class JabatanController extends Controller
      */
     public function destroy(Jabatan $jabatan)
     {
-        //
+        $jabatan->find($jabatan->id)->delete();
+        Alert::toast('Data '.$jabatan->jabatan.' Berhasil Dihapus','error');
+        return redirect()->route('jabatan.index');
     }
 }

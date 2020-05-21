@@ -1,5 +1,7 @@
 @extends('layouts.master')
 @section('title','home')
+@section('karyawan','active')
+
 @section('content')
 
 @include('includes.admin.header')
@@ -28,7 +30,7 @@
                         <td>{{ $loop->iteration }}</td>
                         {{-- <td><a href="{{ route('edit') }}" class="badge badge-success"></a></td> --}}
                         <td>{{ $karyawans->nama }}</td>
-                        <td>{{ $karyawans->jenis_kelamin }}</td>
+                        <td>{{ $karyawans->jenis_kelamin === 'L' ? 'Laki-Laki' : 'Perempuan' }}</td>
                         <td>{{ $karyawans->telepon->nomer_telepon }}</td>
                         <td>{{ $karyawans->jabatan->jabatan }}</td>
                         <td>{{ $karyawans->status }}</td>
