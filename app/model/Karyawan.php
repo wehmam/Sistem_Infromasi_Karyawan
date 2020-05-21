@@ -16,4 +16,7 @@ class Karyawan extends Model
     public function jabatan(){
         return $this->belongsTo(Jabatan::class,'jabatan_id','id');
     }
+    public function pendidikan(){
+        return $this->belongsTo(Pendidikan::class,'pendidikan_id','id');
+    }
 }

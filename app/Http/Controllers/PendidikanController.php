@@ -2,7 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Pendidikan;
+use App\model\Pendidikan;
+use Alert;
 use Illuminate\Http\Request;
 
 class PendidikanController extends Controller
@@ -14,7 +15,7 @@ class PendidikanController extends Controller
      */
     public function index()
     {
-        //
+        return view('pages.admin.pendidikan.index',['pendidikan' => Pendidikan::all()]);
     }
 
     /**
@@ -24,7 +25,8 @@ class PendidikanController extends Controller
      */
     public function create()
     {
-        //
+        $daftar = ['SD','SMP','SMA/SMK','S1'];
+        return view('pages.admin.pendidikan.create',compact('daftar'));
     }
 
     /**
@@ -35,7 +37,12 @@ class PendidikanController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validateData = $request->validate([
+            'pendidikan' => 'required|string'
+        ]);
+        Pendidikan::create($validateData);
+        Alert::toast('Data '.$validateData['pendidikan'].' Berhasil Disimpan','success');
+        return redirect()->route('pendidikan.index');
     }
 
     /**
@@ -57,7 +64,8 @@ class PendidikanController extends Controller
      */
     public function edit(Pendidikan $pendidikan)
     {
-        //
+        $daftar = ['SD','SMP','SMA/SMK','S1'];
+        return view('pages.admin.pendidikan.edit',['pendidikan'=> $pendidikan->find($pendidikan->id)],compact('daftar'));
     }
 
     /**
@@ -69,7 +77,12 @@ class PendidikanController extends Controller
      */
     public function update(Request $request, Pendidikan $pendidikan)
     {
-        //
+        $validateData = $request->validate([
+            'pendidikan' => 'required|string'
+        ]);
+        $pendidikan->find($pendidikan->id)->update($validateData);
+        Alert::toast('Data '.$pendidikan->pendidikan.' Berhasil Di ubah!','success');
+        return redirect()->route('pendidikan.index');
     }
 
     /**
@@ -80,6 +93,8 @@ class PendidikanController extends Controller
      */
     public function destroy(Pendidikan $pendidikan)
     {
-        //
+        $pendidikan->find($pendidikan->id)->delete();
+        Alert::toast('Data '.$pendidikan->pendidikan.' Berhasil Dihapus!','error');
+        return redirect()->route('pendidikan.index');
     }
 }

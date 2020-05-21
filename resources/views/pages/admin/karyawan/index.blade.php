@@ -10,6 +10,7 @@
 <section class="content">
     <div class="container-fluid">
         <table id="example" class="table table-striped table-bordered" style="width:100%">
+            <a href="{{ route('karyawan.create') }}" class="btn btn-primary mb-3">Add Data</a>
             <thead>
                 <tr>
                     {{-- <th>No</th> --}}
@@ -36,13 +37,15 @@
                         <td>{{ $karyawans->status }}</td>
                         <td>{{ $karyawans->tanggal_masuk }}</td>
                         <td>
-                            <a href="{{ route('karyawan.edit',$karyawans->id,'edit') }}" class="badge badge-info">
-                            Edit</a>
-                        <form action="{{ route('karyawan.destroy',$karyawans->id) }}" method="POST">
-                            @csrf
-                            @method('DELETE')
-                            <button type="submit" class="badge badge-danger">Hapus</button>
-                        </form>
+                            <div class="btn-group">
+                                    <a href="{{ route('karyawan.edit',$karyawans->id,'edit') }}" class="badge badge-info">
+                                    Edit</a>
+                                <form action="{{ route('karyawan.destroy',$karyawans->id) }}" method="POST">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button type="submit" class="badge badge-danger">Hapus</button>
+                                </form>
+                            </div>
                         </td>
                     </tr>
                 @endforeach

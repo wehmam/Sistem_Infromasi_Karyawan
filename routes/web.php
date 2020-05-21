@@ -20,4 +20,5 @@ use Illuminate\Support\Facades\Route;
 Route::prefix('/admin')->group(function (){
     route::resource('karyawan','KaryawanController');
     route::resource('jabatan','JabatanController');
+    Route::resource('pendidikan', 'PendidikanController');
 });

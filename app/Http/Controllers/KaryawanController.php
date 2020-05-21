@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\model\Karyawan;
 use App\model\Telepon;
 use App\model\Jabatan;
+use App\model\Pendidikan;
 use Illuminate\Http\Request;
 use App\Http\Requests\KaryawanRequest;
 Use Alert;
@@ -30,8 +31,9 @@ class KaryawanController extends Controller
     public function create()
     {
         $jabatan = Jabatan::all();
+        $pendidikan = Pendidikan::all();
         $status = ['Karyawan Tetap','Magang','Kontrak'];
-        return view('pages.admin.karyawan.formCreate',compact('status','jabatan'));
+        return view('pages.admin.karyawan.formCreate',compact('status','jabatan','pendidikan'));
     }
 
     /**
@@ -46,6 +48,7 @@ class KaryawanController extends Controller
             'nama' => 'required|string|min:3',
             'jenis_kelamin' => 'required',
             'jabatan_id' => 'required',
+            'pendidikan_id' => 'required',
             'status' => 'required',
             'tanggal_masuk' => 'required',
         ]);

@@ -69,6 +69,20 @@
                                 @enderror
                             </div>
                         </div>
+                        <div class="row">
+                            <div class="col">
+                                <label for="pendidikan_id">Pendidikan</label>
+                            <select name="pendidikan_id" id="pendidikan_id" class="form-control @error('pendidikan') is-invalid @enderror">
+                                @foreach($pendidikan as $item)
+                                    <option value="{{ $item->id }}">{{ $item->pendidikan }}</option>
+                                @endforeach
+                            </select>
+                            @error('pendidikan')
+                                <div class="text-danger">{{ $message }}</div>
+                            @enderror
+                            </div>
+                            <div class="col"></div>
+                        </div>
                         <button type="submit" class="btn btn-info mt-4">Submit</button>
                    </form>
                </div>

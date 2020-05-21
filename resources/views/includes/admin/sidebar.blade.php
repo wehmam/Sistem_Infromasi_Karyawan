@@ -40,7 +40,7 @@
                 </li>
 
                 <li class="nav-item">
-                  <a href="pages/gallery.html" class="nav-link @yield('pendidikan')">
+                  <a href="{{ route('pendidikan.index') }}" class="nav-link @yield('Pendidikan')">
                     <i class="nav-icon fas fa-award"></i>
                     <p>
                       Pendidikan
