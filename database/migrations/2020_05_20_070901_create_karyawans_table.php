@@ -17,7 +17,6 @@ class CreateKaryawansTable extends Migration
             $table->id();
             $table->char('nama',50);
             $table->char('jenis_kelamin',1);
-            $table->string('status',20);
             $table->date('tanggal_masuk');
             $table->bigInteger('status_id')->unsigned();
             $table->bigInteger('jabatan_id')->unsigned();

@@ -1,6 +1,6 @@
 @extends('layouts.master')
-@section('title','home')
-@section('Pendidikan','active')
+@section('title','Status')
+@section('status','active')
 @section('content')
 
 @include('includes.admin.header')
@@ -13,25 +13,25 @@
             <thead>
                 <tr>
                     <th>No</th>
-                    <th>Pendidikan</th>
+                    <th>Status</th>
                     <th class="text-center">Action</th>
                 </tr>
             </thead>
             <tbody>
-                @forelse($pendidikan as $item)
+                @forelse($status as $item)
                 <tr>
                     <td>{{ $loop->iteration }}</td>
-                    <td>{{ $item->pendidikan }}</td>
+                    <td>{{ $item->status }}</td>
                     <td>
                         <div class="btn-group">
-                        <a href="{{ route('pendidikan.edit',$item->id,'edit') }}" class="btn">
+                        <a href="{{ route('status.edit',$item->id,'edit') }}" class="btn">
                             <i class="fa fa-edit mr-3"></i>
                         </a>
                         <div class="btn">
-                            <form action="{{ route('pendidikan.destroy',$item->id) }}" method="POST">
+                            <form action="{{ route('status.destroy',$item->id) }}" method="POST">
                                 @csrf
                                 @method('DELETE')
-                                <button type="submit" class="fa fa-trash" onclick="return confirm('Yakin Ingin Menghapus Data {{ $item->pendidikan }}?')"></button>
+                                <button type="submit" class="fa fa-trash" onclick="return confirm('Yakin Ingin Menghapus Data {{ $item->status }}?')"></button>
                             </form>
                         </div>
                         </div>
@@ -48,23 +48,23 @@
                 <div class="modal-dialog">
                   <div class="modal-content">
                     <div class="modal-header">
-                      <h5 class="modal-title" id="exampleModalLabel">Tambah Data Jabatan</h5>
+                      <h5 class="modal-title" id="exampleModalLabel">Tambah Data Status</h5>
                       <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                       </button>
                     </div>
 
                     <div class="modal-body">
-                        <form action="{{ route('pendidikan.store') }}" method="post">
+                        <form action="{{ route('status.store') }}" method="post">
                             @csrf 
                             <div class="form-group">
-                                <label for="pendidikan">Nama pendidikan</label>
-                                <select name="pendidikan" id="pendidikan" class="form-control">
-                                    @foreach($daftar as $pendidikan)
-                                        <option value="{{ $pendidikan }}">{{ $pendidikan }}</option>
+                                <label for="status">Nama status</label>
+                                <select name="status" id="status" class="form-control">
+                                    @foreach($daftar as $status)
+                                        <option value="{{ $status }}">{{ $status }}</option>
                                     @endforeach
                                 </select>
-                                @error('pendidikan')
+                                @error('status')
                                     <div class="text-danger">
                                         {{ $message }}
                                     </div>

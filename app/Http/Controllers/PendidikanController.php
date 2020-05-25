@@ -15,7 +15,8 @@ class PendidikanController extends Controller
      */
     public function index()
     {
-        return view('pages.admin.pendidikan.index',['pendidikan' => Pendidikan::all()]);
+        $daftar = ['SD','SMP','SMA/SMK','S1'];
+        return view('pages.admin.pendidikan.index',['pendidikan' => Pendidikan::all()],compact('daftar'));
     }
 
     /**
@@ -25,8 +26,7 @@ class PendidikanController extends Controller
      */
     public function create()
     {
-        $daftar = ['SD','SMP','SMA/SMK','S1'];
-        return view('pages.admin.pendidikan.create',compact('daftar'));
+        // 
     }
 
     /**

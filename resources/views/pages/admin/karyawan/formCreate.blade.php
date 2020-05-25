@@ -38,7 +38,7 @@
                         <div class="row mt-3">
                             <div class="col">
                                 <label for="jabatan_id">Jabatan</label>
-                                <select name="jabatan_id" id="jabatan_id" class="form-control ">
+                                <select name="jabatan_id" id="jabatan_id" class="form-control @error('jabatan_id') is-invalid @enderror">
                                     @foreach ($jabatan as $item)
                                         <option value="{{ $item->id }}" {{ old('jabatan_id') == $item->jabatan ? 'selected' : '' }}>{{ $item->jabatan }}</option>
                                     @endforeach
@@ -48,12 +48,15 @@
                                 @enderror
                             </div>
                             <div class="col">
-                                <label for="status">Status</label>
-                                <select name="status" id="status" class="form-control @error('status') is-invalid @enderror">
-                                    @foreach($status as $status)
-                                        <option value="{{ $status }}" {{ old('status') == $status ? 'selected' : '' }}>{{ $status }}</option>
+                                <label for="status_id">Status</label>
+                                <select name="status_id" id="status_id" class="form-control @error('status_id') is-invalid @enderror">
+                                    @foreach($status as $item)
+                                        <option value="{{ $item->id }}" >{{ $item->status }}</option>
                                     @endforeach
                                 </select>
+                                @error('status_id')
+                                    <div class="text-danger">{{ $message }}</div>
+                                @enderror
                             </div>
                         </div>
                         <div class="row mt-3">
@@ -81,7 +84,8 @@
                                 <div class="text-danger">{{ $message }}</div>
                             @enderror
                             </div>
-                            <div class="col"></div>
+                            <div class="col">
+                            </div>
                         </div>
                         <button type="submit" class="btn btn-info mt-4">Submit</button>
                    </form>

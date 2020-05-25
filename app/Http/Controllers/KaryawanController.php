@@ -6,6 +6,7 @@ use App\model\Karyawan;
 use App\model\Telepon;
 use App\model\Jabatan;
 use App\model\Pendidikan;
+use App\model\Status;
 use Illuminate\Http\Request;
 use App\Http\Requests\KaryawanRequest;
 Use Alert;
@@ -32,7 +33,7 @@ class KaryawanController extends Controller
     {
         $jabatan = Jabatan::all();
         $pendidikan = Pendidikan::all();
-        $status = ['Karyawan Tetap','Magang','Kontrak'];
+        $status = Status::all();
         return view('pages.admin.karyawan.formCreate',compact('status','jabatan','pendidikan'));
     }
 
@@ -49,7 +50,7 @@ class KaryawanController extends Controller
             'jenis_kelamin' => 'required',
             'jabatan_id' => 'required',
             'pendidikan_id' => 'required',
-            'status' => 'required',
+            'status_id' => 'required',
             'tanggal_masuk' => 'required',
         ]);
         
@@ -83,8 +84,9 @@ class KaryawanController extends Controller
     {
         $karyawan->find($karyawan->id);
         $jabatan = Jabatan::all();
-        $status = ['Karyawan Tetap','Magang','Kontrak'];
-        return view('pages.admin.karyawan.formEdit',compact('karyawan','jabatan','status'));
+        $status = Status::all();
+        $pendidikan = Pendidikan::all();
+        return view('pages.admin.karyawan.formEdit',compact('karyawan','jabatan','status','pendidikan'));
     }
 
     /**
@@ -100,7 +102,8 @@ class KaryawanController extends Controller
             'nama' => 'required|string|min:3',
             'jenis_kelamin' => 'required',
             'jabatan_id' => 'required',
-            'status' => 'required',
+            'pendidikan_id' => 'required',
+            'status_id' => 'required',
             'tanggal_masuk' => 'required',
         ]);
 

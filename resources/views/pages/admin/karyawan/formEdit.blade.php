@@ -50,11 +50,14 @@
                             </div>
                             <div class="col">
                                 <label for="status">Status</label>
-                                <select name="status" id="status" class="form-control @error('status') is-invalid @enderror">
-                                    @foreach($status as $status)
-                                        <option value="{{ $status }}" {{ old('status') ?? $karyawan->status ? 'selected' : '' }}>{{ $status }}</option>
+                                <select name="status_id" id="status_id" class="form-control @error('status_id') is-invalid @enderror">
+                                    @foreach($status as $item)
+                                        <option value="{{ $item->id }}" {{ old('status_id') ?? $karyawan->status_id === $item->id ? 'selected' : '' }}>{{ $item->status }}</option>
                                     @endforeach
                                 </select>
+                                @error('status_id')
+                                    <div class="text-danger">{{ $message }}</div>
+                                @enderror
                             </div>
                         </div>
                         <div class="row mt-3">
@@ -69,6 +72,20 @@
                                     <div class="text-danger">{{ $message }}</div>
                                 @enderror
                             </div>
+                        </div>
+                        <div class="row mt-2">
+                            <div class="col">
+                                <label for="pendidikan_id">Pendidikan</label>
+                                <select name="pendidikan_id" id="pendidikan_id" class="form-control @error('pendidikan_id') is-invalid @enderror">
+                                    @foreach($pendidikan as $item)
+                                        <option value="{{ $item->id }}" {{ old('pendidikan_id') ?? $karyawan->pendidikan_id === $item->id ? 'selected' : '' }}>{{ $item->pendidikan }}</option>
+                                    @endforeach
+                                </select>
+                                @error('pendidikan_id')
+                                    <div class="text-danger">{{ $message }}</div>
+                                @enderror
+                            </div>
+                            <div class="col"></div>
                         </div>
                         <button type="submit" class="btn btn-info mt-4">Submit</button>
                    </form>

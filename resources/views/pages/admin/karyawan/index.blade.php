@@ -34,7 +34,7 @@
                         <td>{{ $karyawans->jenis_kelamin === 'L' ? 'Laki-Laki' : 'Perempuan' }}</td>
                         <td>{{ $karyawans->telepon->nomer_telepon }}</td>
                         <td>{{ $karyawans->jabatan->jabatan }}</td>
-                        <td>{{ $karyawans->status }}</td>
+                        <td>{{ $karyawans->status->status }}</td>
                         <td>{{ $karyawans->tanggal_masuk }}</td>
                         <td>
                             <div class="btn-group">

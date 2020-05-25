@@ -47,6 +47,15 @@
                     </p>
                   </a>
                 </li>
+
+                <li class="nav-item">
+                  <a href="{{ route('status.index') }}" class="nav-link @yield('status')">
+                    <i class="nav-icon fas fa-award"></i>
+                    <p>
+                      Status
+                    </p>
+                  </a>
+                </li>
             </ul>
         </nav>
 
