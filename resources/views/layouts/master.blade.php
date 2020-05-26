@@ -23,9 +23,14 @@
   <link rel="stylesheet" href="{{ asset('admin/plugins/daterangepicker/daterangepicker.css') }}">
   <!-- Google Font: Source Sans Pro -->
   <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
+  
   <!-- DataTables -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.css ">
-  <link rel="stylesheet" href="https://cdn.datatables.net/1.10.21/css/dataTables.bootstrap4.min.css">
+
+  <link rel="stylesheet" href="https://cdn.datatables.net/1.10.21/css/jquery.dataTables.min.css">
+  <link rel="stylesheet" href="https://cdn.datatables.net/responsive/2.2.4/css/responsive.dataTables.min.css">
+  <link rel="styles heet" href="{{ asset('admin/dataTables.css') }}">
+
+
 
 </head>
 
@@ -37,6 +42,7 @@
     @yield('content')
 </div>
 
+{{-- <script src="https://code.jquery.com/jquery-3.5.1.js"></script>    --}}
   <!-- jQuery -->
   <script src="{{ asset('admin/plugins/jquery/jquery.min.js') }}"></script>
   <!-- jQuery UI 1.11.4 -->
@@ -59,20 +65,17 @@
   <!-- AdminLTE App -->
   <script src="{{ asset('admin/dist/js/adminlte.js') }}"></script>
   <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
-  <script src="{{ asset('admin/dist/js/pages/dashboard.js') }}"></script>
+  {{-- <script src="{{ asset('admin/dist/js/pages/dashboard.js') }}"></script> --}}
   <!-- AdminLTE for demo purposes -->
   <script src="{{ asset('admin/dist/js/demo.js') }}"></script>
 
+ <!-- DataTables -->
+ <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+ <script src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script>
+ <script src="https://cdn.datatables.net/responsive/2.2.4/js/dataTables.responsive.min.js"></script>
 
-  <!-- DataTables -->
-  <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
-  <script src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script>
-  <script src="https://cdn.datatables.net/1.10.21/js/dataTables.bootstrap4.min.js"></script>
-  <script>
-   $(document).ready(function() {
-    $('#example').DataTable();
-} );
-  </script>
+ @stack('data')
+ 
   @include('sweetalert::alert')
 </body>
 

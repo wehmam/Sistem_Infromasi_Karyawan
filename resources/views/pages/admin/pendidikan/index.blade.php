@@ -3,13 +3,25 @@
 @section('Pendidikan','active')
 @section('content')
 
-@include('includes.admin.header')
+<div class="content-header">
+    <div class="container-fluid">
+    <div class="row mb-2">
+        <div class="col-sm-6">
+            <h1 class="m-0 text-dark">Dashboard</h1>
+        </div>
+        <div class="col-sm-6">
+            <button type="button" data-target="#tambahData" class="btn btn-primary mb-2 float-right" data-toggle="modal"><i class="fa fa-plus"> Add data</i></button>
+        </div>
+    </div>
+    <hr>
+    </div>
+</div>
 
 <!-- Content Header (Page header) -->
 <section class="content">
     <div class="container-fluid">
         <table class="table table-striped table-bordered">
-            <button type="button" data-target="#tambahData" class="btn btn-primary mb-2" data-toggle="modal">Add data</button>
+            
             <thead>
                 <tr>
                     <th>No</th>
@@ -48,7 +60,7 @@
                 <div class="modal-dialog">
                   <div class="modal-content">
                     <div class="modal-header">
-                      <h5 class="modal-title" id="exampleModalLabel">Tambah Data Jabatan</h5>
+                      <h5 class="modal-title" id="exampleModalLabel">Tambah Data Pendidikan</h5>
                       <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                       </button>

@@ -1,0 +1,8 @@
+td.details-control {
+    background: url('https://img.icons8.com/material-two-tone/24/000000/link--v1.png') no-repeat center center;
+    cursor: pointer;
+}
+tr.shown td.details-control {
+    background: url('https://img.icons8.com/material-two-tone/24/000000/link--v1.png') no-repeat center center;
+}
+ 
