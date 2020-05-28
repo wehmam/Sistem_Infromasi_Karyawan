@@ -20,15 +20,15 @@
 
 <!-- Content Header (Page header) -->
 <section class="content">
-    <div class="container-fluid">
-        <table id="example" class="table table-striped display nowrap" style="width:100%">
-            {{-- <a href="" class="float-right btn btn-primary"><i class="fa fa-plus"> Add Data</i></a> --}}
+    <div class="container">
+        <table id="example" class="display nowrap" style="width:100%">
             <thead>
                 <tr class="text-center">
                     <th></th>
                     <th>No</th>
                     <th>Nama</th>
                     <th>Jenis Kelamin</th>
+                    <th>Umur</th>
                     <th>No Telepon</th>
                     <th>Status</th>
                     <th>Jabatan</th>
@@ -40,25 +40,25 @@
             <tbody>
                @foreach($karyawan as $karyawans)
                 <tr class="text-center">
-                    <td><a href="{{ route('karyawan.edit',$karyawans->id,'edit') }}" class="mr-2 badge-info badge">
-                        Edit</a></td>
+                    <td></td>
                     <td>{{ $loop->iteration }}</td>
                     <td>{{ $karyawans->nama }}</td>
                     <td>{{ $karyawans->jenis_kelamin === 'L' ? 'Laki-Laki' : 'Perempuan' }}</td>
+                    <td>{{ $karyawans->umur }}</td>
                     <td>{{ $karyawans->telepon->nomer_telepon }}</td>
                     <td>{{ $karyawans->status->status }}</td>
                     <td>{{ $karyawans->jabatan->jabatan }}</td>
                     <td>{{ $karyawans->pendidikan->pendidikan }}</td>
                     <td>{{ $karyawans->tanggal_masuk }}</td>
-                    <td>
-                        {{-- <div class="btn-group"> --}}
-                                
-                            <form action="{{ route('karyawan.destroy',$karyawans->id) }}" method="POST">
-                                @csrf
-                                @method('DELETE')
-                                <button type="submit" class="badge badge-danger">Hapus</button>
-                            </form>
-                        {{-- </div> --}}
+                    <td>        
+                        <div class="btn-group">
+                        <form action="{{ route('karyawan.destroy',$karyawans->id) }}" method="POST">
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit" class="badge badge-danger mr-3 p-2">Hapus</button>
+                        </form>
+                         <a href="{{ route('karyawan.edit',$karyawans->id,'edit') }}" class="p-2 badge-info badge">Edit</a>
+                        </div>
                     </td>
                 </tr>
                @endforeach
@@ -66,47 +66,4 @@
         </table>
     </div>
 </section>
-
-{{-- </div> --}}
-
 @endsection
-
-@push('data')
-
-<script>
-    $(document).ready(function() {
-     $('#example').DataTable( {
-         responsive: {
-             details: {
-                 type: 'column',
-                 target: 'tr'
-             }
-         },
-         columnDefs: [ {
-             className: 'details-control',
-             orderable: false,
-             targets:   0
-         } ],
-         order: [ 1, 'asc' ]
-     } );
-  } );
-  </script>
-@endpush
-
-{{-- <tbody> --}}
-
-    {{-- @foreach($karyawan as $karyawans)
-        <tr>
-            <th></th>
-            <td>{{ $loop->iteration }}</td>
-            <td><a href="{{ route('edit') }}" class="badge badge-success"></a></td>
-            <td>{{ $karyawans->nama }}</td>
-            <td>{{ $karyawans->jenis_kelamin === 'L' ? 'Laki-Laki' : 'Perempuan' }}</td>
-            <td>{{ $karyawans->telepon->nomer_telepon }}</td>
-            <td>{{ $karyawans->jabatan->jabatan }}</td>
-            <td>{{ $karyawans->status->status }}</td>
-            <td>{{ $karyawans->tanggal_masuk }}</td>
-           
-        </tr>
-    @endforeach
-</tbody> --}}

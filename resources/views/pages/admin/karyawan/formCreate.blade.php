@@ -60,14 +60,18 @@
                             </div>
                         </div>
                         <div class="row mt-3">
-                            <div class="col">
-                                <label for="tanggal_masuk">Tanggal Masuk</label>
-                                <input type="date" name="tanggal_masuk" id="tanggal_masuk" class="form-control">
-                            </div>
+                            
                             <div class="col">
                                 <label for="nomer_telepon">Nomer Telepon</label>
                                 <input type="text" name="nomer_telepon" id="nomer_telepon" class="form-control @error('nomer_telepon') is-invalid @enderror" value="{{ old('nomer_telepon') }}">
                                 @error('nomer_telepon')
+                                    <div class="text-danger">{{ $message }}</div>
+                                @enderror
+                            </div>
+                            <div class="col">
+                                <label for="umur">Umur</label>
+                                <input type="text" name="umur" class="form-control @error('umur') is-invalid @enderror" id="umur" value="{{ old('umur') }}">
+                                @error('umur')
                                     <div class="text-danger">{{ $message }}</div>
                                 @enderror
                             </div>
@@ -85,6 +89,11 @@
                             @enderror
                             </div>
                             <div class="col">
+                                <label for="tanggal_masuk">Tanggal Masuk</label>
+                                <input type="date" name="tanggal_masuk" id="tanggal_masuk" class="form-control @error('tanggal_masuk') is-invalid @enderror">
+                                @error('tanggal_masuk')
+                                    <div class="text-danger">{{ $message }}</div>
+                                @enderror
                             </div>
                         </div>
                         <button type="submit" class="btn btn-info mt-4">Submit</button>

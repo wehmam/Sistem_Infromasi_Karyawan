@@ -33,7 +33,27 @@
                 @forelse($pendidikan as $item)
                 <tr>
                     <td>{{ $loop->iteration }}</td>
-                    <td>{{ $item->pendidikan }}</td>
+                    @if($item->pendidikan === 'SD')
+                        <td>
+                            <b class="badge badge-danger">{{$item->pendidikan }}</b>
+                        </td>
+                    @elseif($item->pendidikan === 'SMP')
+                        <td>
+                            <b class="badge badge-info">{{$item->pendidikan }}</b>
+                        </td>
+                    @elseif($item->pendidikan === 'SMA/SMK')
+                        <td>
+                            <b class="badge badge-secondary">{{$item->pendidikan }}</b>
+                        </td>
+                    @elseif($item->pendidikan === 'D3')
+                        <td>
+                            <b class="badge badge-warning">{{$item->pendidikan }}</b>
+                        </td>
+                    @else
+                        <td>
+                            <b class="badge badge-success">{{$item->pendidikan }}</b>
+                        </td>
+                    @endif
                     <td>
                         <div class="btn-group">
                         <a href="{{ route('pendidikan.edit',$item->id,'edit') }}" class="btn">

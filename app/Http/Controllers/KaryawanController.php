@@ -25,6 +25,10 @@ class KaryawanController extends Controller
         return view('pages.admin.karyawan.index',compact('karyawan'));
     }
 
+    public function json(){
+        return DataTables::of(Karyawan::query())->make(true);
+    }
+
     /**
      * Show the form for creating a new resource.
      *
@@ -49,10 +53,11 @@ class KaryawanController extends Controller
         $validateData = $request->validate([
             'nama' => 'required|string|min:3',
             'jenis_kelamin' => 'required',
+            'umur' => 'required|numeric|digits:2',
             'jabatan_id' => 'required',
             'pendidikan_id' => 'required',
             'status_id' => 'required',
-            'tanggal_masuk' => 'required',
+            'tanggal_masuk' => 'required|date',
         ]);
         
         $karyawan = Karyawan::create($validateData);
@@ -102,6 +107,7 @@ class KaryawanController extends Controller
         $validateData = $request->validate([
             'nama' => 'required|string|min:3',
             'jenis_kelamin' => 'required',
+            'umur' => 'required|numeric|digits:2',
             'jabatan_id' => 'required',
             'pendidikan_id' => 'required',
             'status_id' => 'required',

@@ -19,6 +19,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::prefix('/admin')->group(function (){
     Route::resource('karyawan','KaryawanController');
+    Route::get('json','KaryawanController@json')->name('karyawan.json');
     Route::resource('jabatan','JabatanController');
     Route::resource('pendidikan', 'PendidikanController');
     Route::resource('status', 'StatusController');

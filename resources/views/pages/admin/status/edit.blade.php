@@ -20,7 +20,7 @@
                         <label for="status">Nama status</label>
                         <select name="status" id="status" class="form-control @error('status') is-invalid @enderror">
                             @foreach($daftar as $item)
-                                <option value="{{ $item }}" {{ old('status') ?? $status->status  == $item ? 'selected' : '' }}>{{ $item }}</option>
+                                <option value="{{ $item }}" {{ $status->status  == $item ? 'selected' : '' }}>{{ $item }}</option>
                             @endforeach
                         </select>
                         @error('status')

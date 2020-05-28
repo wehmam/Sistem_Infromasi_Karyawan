@@ -15,7 +15,7 @@ class PendidikanController extends Controller
      */
     public function index()
     {
-        $daftar = ['SD','SMP','SMA/SMK','S1'];
+        $daftar = ['SD','SMP','SMA/SMK','D3','S1',"S2","S3"];
         return view('pages.admin.pendidikan.index',['pendidikan' => Pendidikan::all()],compact('daftar'));
     }
 
@@ -38,7 +38,7 @@ class PendidikanController extends Controller
     public function store(Request $request)
     {
         $validateData = $request->validate([
-            'pendidikan' => 'required|string'
+            'pendidikan' => 'required|string|unique:pendidikans'
         ]);
         Pendidikan::create($validateData);
         Alert::toast('Data '.$validateData['pendidikan'].' Berhasil Disimpan','success');
@@ -64,7 +64,7 @@ class PendidikanController extends Controller
      */
     public function edit(Pendidikan $pendidikan)
     {
-        $daftar = ['SD','SMP','SMA/SMK','S1'];
+        $daftar = ['SD','SMP','SMA/SMK','D3','S1',"S2","S3"];
         return view('pages.admin.pendidikan.edit',['pendidikan'=> $pendidikan->find($pendidikan->id)],compact('daftar'));
     }
 
@@ -78,7 +78,7 @@ class PendidikanController extends Controller
     public function update(Request $request, Pendidikan $pendidikan)
     {
         $validateData = $request->validate([
-            'pendidikan' => 'required|string'
+            'pendidikan' => 'required|string|unique:pendidikans,pendidikan,'.$pendidikan->id,
         ]);
         $pendidikan->find($pendidikan->id)->update($validateData);
         Alert::toast('Data '.$pendidikan->pendidikan.' Berhasil Di ubah!','success');

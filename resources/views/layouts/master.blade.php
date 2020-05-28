@@ -13,10 +13,14 @@
   <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
   <!-- Tempusdominus Bbootstrap 4 -->
   <link rel="stylesheet" href="{{ asset('admin/plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css') }}">
+
+
   <!-- iCheck -->
   <link rel="stylesheet" href="{{ asset('admin/plugins/icheck-bootstrap/icheck-bootstrap.min.css') }}">
  <!-- Theme style -->
-  <link rel="stylesheet" href="{{ asset('admin/dist/css/adminlte.min.css') }}">
+ <link rel="stylesheet" href="{{ asset('admin/dist/css/adminlte.min.css') }}">
+  {{-- <link rel="styles heet" href="{{ asset('admin/dataTables.css') }}"> --}}
+
   <!-- overlayScrollbars -->
   <link rel="stylesheet" href="{{ asset('admin/plugins/overlayScrollbars/css/OverlayScrollbars.min.css') }}">
   <!-- Daterange picker -->
@@ -25,11 +29,17 @@
   <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
   
   <!-- DataTables -->
-
-  <link rel="stylesheet" href="https://cdn.datatables.net/1.10.21/css/jquery.dataTables.min.css">
-  <link rel="stylesheet" href="https://cdn.datatables.net/responsive/2.2.4/css/responsive.dataTables.min.css">
-  <link rel="styles heet" href="{{ asset('admin/dataTables.css') }}">
-
+  <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.21/css/jquery.dataTables.min.css">
+  <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/responsive/2.2.4/css/responsive.dataTables.min.css">
+  <style>
+    td.details-control {
+background: url('http://www.datatables.net/examples/resources/details_open.png') no-repeat center center;
+cursor: pointer;
+}
+tr.details td.details-control {
+background: url('http://www.datatables.net/examples/resources/details_close.png') no-repeat center center;
+}
+</style>
 
 
 </head>
@@ -67,15 +77,28 @@
   <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
   {{-- <script src="{{ asset('admin/dist/js/pages/dashboard.js') }}"></script> --}}
   <!-- AdminLTE for demo purposes -->
-  <script src="{{ asset('admin/dist/js/demo.js') }}"></script>
+  <script type="text/javascript" language="javascript" src="https://code.jquery.com/jquery-3.5.1.js"></script>
+  <script type="text/javascript" language="javascript" src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script>
+  <script type="text/javascript" language="javascript" src="https://cdn.datatables.net/responsive/2.2.4/js/dataTables.responsive.min.js"></script>
 
- <!-- DataTables -->
- <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
- <script src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script>
- <script src="https://cdn.datatables.net/responsive/2.2.4/js/dataTables.responsive.min.js"></script>
-
- @stack('data')
- 
+  <script>
+  $(document).ready(function() {
+      $('#example').dataTable({
+          responsive:{
+              details:{
+                  type: 'column',
+                  target: 'tr'
+              }
+          },
+          columnDefs: [{
+              className: 'control',
+              orderable: false,
+              targets: 0
+          }],
+          order: [1,'asc']
+      });
+  });
+  </script>
   @include('sweetalert::alert')
 </body>
 

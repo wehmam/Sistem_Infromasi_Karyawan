@@ -37,7 +37,7 @@ class JabatanController extends Controller
     public function store(Request $request)
     {
         $validateData = $request->validate([
-            'jabatan' => 'required|string'
+            'jabatan' => 'required|string|unique:jabatans'
         ]);
         Jabatan::create($validateData);
         Alert::toast('Data '.$request->jabatan.' Berhasil Disimpan','success');
@@ -76,7 +76,7 @@ class JabatanController extends Controller
     public function update(Request $request, Jabatan $jabatan)
     {
         $validateData = $request->validate([
-            'jabatan' => 'required|string'
+            'jabatan' => 'required|string|unique:jabatans,jabatan,'.$jabatan->id
         ]);
         $jabatan->find($jabatan->id)->update($validateData);
         Alert::toast('Data '.$jabatan->jabatan.' Berhasil Diedit','success');

@@ -15,7 +15,7 @@ class CreatePendidikansTable extends Migration
     {
         Schema::create('pendidikans', function (Blueprint $table) {
             $table->id();
-            $table->string('pendidikan');
+            $table->string('pendidikan')->unique();
             $table->timestamps();
         });
     }

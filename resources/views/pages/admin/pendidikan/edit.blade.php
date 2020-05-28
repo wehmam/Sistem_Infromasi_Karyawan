@@ -20,7 +20,7 @@
                         <label for="pendidikan">Nama pendidikan</label>
                         <select name="pendidikan" id="pendidikan" class="form-control @error('pendidikan') is-invalid @enderror">
                             @foreach($daftar as $item)
-                                <option value="{{ $item }}" {{ old('pendidikan') ?? $pendidikan->pendidikan === $item ? 'selected' : '' }}>{{ $item }}</option>
+                                <option value="{{ $item }}" {{ $pendidikan->pendidikan === $item ? 'selected' : '' }}>{{ $item }}</option>
                             @endforeach
                         </select>
                         @error('pendidikan')

@@ -32,7 +32,19 @@
                 @forelse($status as $item)
                 <tr>
                     <td>{{ $loop->iteration }}</td>
-                    <td>{{ $item->status }}</td>
+                    @if($item->status === 'Karyawan Tetap')
+                      <td>
+                          <b class="badge badge-success">{{ $item->status }}</b>
+                      </td>      
+                    @elseif($item->status === 'Kontrak')
+                        <td>
+                            <b class="badge badge-warning">{{ $item->status }}</b>
+                        </td>
+                    @else
+                        <td>
+                            <b class="badge badge-info">{{ $item->status }}</b>
+                        </td>
+                        @endif
                     <td>
                         <div class="btn-group">
                         <a href="{{ route('status.edit',$item->id,'edit') }}" class="btn">

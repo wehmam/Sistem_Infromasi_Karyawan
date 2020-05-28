@@ -22,7 +22,7 @@
             <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">      
               <li class="nav-item">
                   <a href="{{ route('karyawan.index') }}" class="nav-link @yield('karyawan')">
-                    <i class="nav-icon far fa-user"></i>
+                    <i class="nav-icon fa fa-user-tie"></i>
                     <p>
                       Data Karyawan
                     </p>
@@ -32,7 +32,7 @@
                 
                 <li class="nav-item">
                   <a href="{{ route('jabatan.index') }}" class="nav-link @yield('jabatan')">
-                    <i class="nav-icon fas fa-glasses"></i>
+                    <i class="nav-icon fa fa-user-tag"></i>
                     <p>
                       Jabatan
                     </p>
@@ -41,7 +41,7 @@
 
                 <li class="nav-item">
                   <a href="{{ route('pendidikan.index') }}" class="nav-link @yield('Pendidikan')">
-                    <i class="nav-icon fas fa-award"></i>
+                    <i class="nav-icon fas fa-graduation-cap"></i>
                     <p>
                       Pendidikan
                     </p>

@@ -37,9 +37,10 @@ class StatusController extends Controller
      */
     public function store(Request $request)
     {
-        $status = new Status;
-        $status->status = $request->status;
-        $status->save();
+        $validateData =  $request->validate([
+            'status' => 'required|unique:statuses'
+        ]);
+        $input = Status::create($validateData);
         Alert::toast('Status Berhasil Ditambahkan!','success');
         return redirect()->route('status.index');
     }
@@ -77,9 +78,10 @@ class StatusController extends Controller
      */
     public function update(Request $request, Status $status)
     {
-        $status->find($status->id)->update([
-            'status' => $request->status
+        $validateData = $request->validate([
+            'status' => 'required|unique:statuses,status,'.$status->id
         ]);
+        $status->find($status->id)->update($validateData);
         Alert::toast('Status Berhasil Diedit!','success');
         return redirect()->route('status.index');
     }
