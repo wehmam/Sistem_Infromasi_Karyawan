@@ -13,9 +13,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-// Route::get('/', function () {
-//     return view('pages.test');
-// });
+Route::get('/', function () {
+    return view('pages.test');
+});
 
 Route::prefix('/admin')->group(function (){
     Route::resource('karyawan','KaryawanController');
